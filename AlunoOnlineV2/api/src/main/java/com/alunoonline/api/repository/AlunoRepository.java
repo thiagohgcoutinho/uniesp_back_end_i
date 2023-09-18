@@ -4,6 +4,7 @@ import com.alunoonline.api.model.Aluno;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+// Identificação do Repository do Spring
 @Repository
 public interface AlunoRepository extends JpaRepository<Aluno, Long> {
 }
