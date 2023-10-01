@@ -7,6 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.Optional;
+
 // Identificação da classe Controller no Spring com a arquitetura REST
 @RestController
 // Mapeamento das requisições do FrontEnd
@@ -26,5 +29,39 @@ public class AlunoController {
 
         return ResponseEntity.status(201).body(alunoCreated);
     }
+
+    // Requisição do tipo GET
+    @GetMapping("all")
+    // Resposta da requisição
+    @ResponseStatus(HttpStatus.OK)
+    public List<Aluno> findAll(){
+        return service.findAll();
+    }
+
+    // Requisição do tipo GET
+    @GetMapping("{id}")
+    // Resposta da requisição
+    @ResponseStatus(HttpStatus.OK)
+    public Optional<Aluno> findById(@PathVariable Long id){
+        return service.findById(id);
+    }
+
+    // Requisição do tipo DELETE
+    @DeleteMapping("{id}")
+    // Resposta da requisição
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable Long id){
+        service.delete(id);
+    }
+
+    //requisição do tipo PATCH
+    @PatchMapping("{id}")
+    // Resposta da requisição
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Aluno> update(@PathVariable Long id, @RequestBody Aluno aluno){
+        Aluno alunoUpdate = service.update(id, aluno);
+        return ResponseEntity.status(200).body(alunoUpdate);
+    }
+
 
 }
