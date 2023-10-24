@@ -8,21 +8,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// Identificador de classe como entidade no BD
 @Entity
-// Criador de GETS e SETS
 @Data
-// Construtores com todos e nenhum argumento
 @AllArgsConstructor
 @NoArgsConstructor
-public class Aluno {
+public class Professor {
 
-    // Primeira coluna da tabela gerados números automaticamente
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
     private String email;
-    private String curso;
 }

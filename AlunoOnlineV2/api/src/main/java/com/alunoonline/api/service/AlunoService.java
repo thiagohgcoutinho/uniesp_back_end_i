@@ -3,7 +3,9 @@ package com.alunoonline.api.service;
 import com.alunoonline.api.model.Aluno;
 import com.alunoonline.api.repository.AlunoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,17 +39,34 @@ public class AlunoService {
     }
 
     //método para atualizar um aluno pelo Id
-    public Aluno update(Long id, Aluno alunoUpdated){
-        Aluno aluno = repository.findById(id).get();
-        if (alunoUpdated.getNome() != null) {
-            aluno.setNome(alunoUpdated.getNome());
+     public Aluno update(Long id, Aluno aluno){
+        Aluno alunoUpdated = repository.findById(id).get();
+        if (aluno.getNome() != null) {
+            alunoUpdated.setNome(aluno.getNome());
         }
-        if (alunoUpdated.getCurso() != null) {
-            aluno.setCurso(alunoUpdated.getCurso());
+        if (aluno.getCurso() != null) {
+            alunoUpdated.setCurso(aluno.getCurso());
         }
-        if (alunoUpdated.getEmail() != null) {
-            aluno.setEmail(alunoUpdated.getEmail());
+        if (aluno.getEmail() != null) {
+            alunoUpdated.setEmail(aluno.getEmail());
         }
+        return repository.save(alunoUpdated);
+    }
+
+    public Aluno update2(Aluno aluno) {
+
+        if (aluno.getNome() == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não pode ser nulo");
+        }
+
+        if (aluno.getEmail() == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não pode ser nulo");
+        }
+
+        if (aluno.getCurso() == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Não pode ser nulo");
+        }
+
         return repository.save(aluno);
     }
 }
