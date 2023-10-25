@@ -25,25 +25,25 @@ public class ProfessorController {
         return ResponseEntity.status(201).body(professorCreated);
     }
 
-    @GetMapping("all")
+    @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
     public List<Professor> findAll(){
         return service.findAll();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public Optional<Professor> findById(@PathVariable Long id){
         return service.findById(id);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id){
         service.delete(id);
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Professor> update(@RequestBody Professor professor){
         Professor professorUpdated = service.update(professor);

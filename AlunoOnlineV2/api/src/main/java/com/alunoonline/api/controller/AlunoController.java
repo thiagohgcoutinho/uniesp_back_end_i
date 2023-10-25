@@ -31,7 +31,7 @@ public class AlunoController {
     }
 
     // Requisição do tipo GET
-    @GetMapping("all")
+    @GetMapping("/all")
     // Resposta da requisição
     @ResponseStatus(HttpStatus.OK)
     public List<Aluno> findAll(){
@@ -39,7 +39,7 @@ public class AlunoController {
     }
 
     // Requisição do tipo GET
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     // Resposta da requisição
     @ResponseStatus(HttpStatus.OK)
     public Optional<Aluno> findById(@PathVariable Long id){
@@ -47,7 +47,7 @@ public class AlunoController {
     }
 
     // Requisição do tipo DELETE
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     // Resposta da requisição
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id){
@@ -55,7 +55,7 @@ public class AlunoController {
     }
 
     //requisição do tipo PUT
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     // Resposta da requisição
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public ResponseEntity<Aluno> update(@RequestBody Aluno aluno){
