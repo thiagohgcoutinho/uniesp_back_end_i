@@ -1,0 +1,72 @@
+openapi: 3.0.3
+info:
+  title: Aluno Online - API Back-end
+  description: |-
+    Esta é a documentação das APIs do sistema Aluno Online
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+tags:
+  - name: Aluno
+    description: Endpoints da Entidade Aluno
+  - name: Professor
+    description: Endpoints da Entidade Professor
+  - name: Disciplina
+    description: Endpoints da Entidade Disciplina
+  - name: MatriculaAluno
+    description: Endpoints da Entidade MatriculaAluno
+paths:
+  /aluno:
+    put:
+      tags:
+        - Aluno
+      summary: Atualiza um Aluno existente
+      description: Atualiza um Aluno existente pelo ID
+      operationId: updateAluno
+      requestBody:
+        description: Atualiza um Aluno existente
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Aluno'
+          application/xml:
+            schema:
+              $ref: '#/components/schemas/Aluno'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Aluno'
+        required: true
+      responses:
+        '204':
+          description: Successful operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Aluno'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Aluno'
+        '400':
+          description: Invalid ID supplied
+        '404':
+          description: Pet not found
+        '405':
+          description: Validation exception    
+components:
+  schemas:
+    Aluno:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: ID do Aluno
+        nome:
+          type: string
+          description: Nome do Aluno
+        email:
+          type: string
+          description: Email do Aluno
+        curso:
+          type: string
+          description: Curso do Aluno
